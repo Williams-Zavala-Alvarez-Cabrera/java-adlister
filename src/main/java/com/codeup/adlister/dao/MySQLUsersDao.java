@@ -79,7 +79,7 @@ public class MySQLUsersDao implements Users{
     public List<User> all() {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads");
+            stmt = connection.prepareStatement("SELECT * FROM users");
             ResultSet rs = stmt.executeQuery();
             return createUserFromResults(rs);
         } catch (SQLException e) {
