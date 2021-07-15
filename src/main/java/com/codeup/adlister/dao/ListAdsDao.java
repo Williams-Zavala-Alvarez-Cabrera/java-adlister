@@ -10,7 +10,11 @@ import java.util.List;
 
 
 // may need to implements Ads at a later time - Lex
+
+
+
 public class ListAdsDao {
+
 
     // may need to implements Ads at a later time - Lex
 
@@ -64,6 +68,9 @@ public class ListAdsDao {
         ));
         return ads;
     }
+
+}
+
 }
 
         private List<Ad> generateAds() {
@@ -95,5 +102,6 @@ public class ListAdsDao {
             return ads;
         }
     }
+
 
 
