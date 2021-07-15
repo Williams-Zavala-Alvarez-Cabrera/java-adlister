@@ -55,6 +55,12 @@ public class MySQLUsersDao implements Users{
         }
     }
 
+    @Override
+    public Boolean usernameExists(String username) {
+        return null;
+    }
+
+
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
             return null;
