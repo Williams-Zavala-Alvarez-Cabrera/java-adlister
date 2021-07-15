@@ -41,16 +41,15 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+//    Find all ads with id passed through as parameter
     @Override
     public Ad findUniqueAdId(Long ad){
         String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
+        PreparedStatement stmt = null;
         try{
-            PreparedStatement stmt = connection.prepareStatement(query);
+            connection.prepareStatement(query);
             stmt.setLong(1, ad);
             ResultSet rs = stmt.executeQuery();
-            if (! rs.next()) {
-                return null;
-            }
             return extractAd(rs);
         } catch(SQLException e) {
             throw new RuntimeException("Error finding Ad ID", e);
@@ -82,6 +81,8 @@ public class MySQLAdsDao implements Ads {
                 rs.getString("description")
         );
     }
+
+//    Edit ad using execute update on statement built
     @Override
     public void edit(Ad ad, String title, String description){
         try{

@@ -16,36 +16,37 @@ import static java.lang.Long.parseLong;
 public class EditAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+//        Get id using substring.....isnt working because ID's arent resetting after deleting and creating new ads.
         String adId = request.getPathInfo().substring(1);
+        System.out.println(adId);
 
+//        Run adId through find unique ad method
+//        Parse long because find unique ad takes in long as parameter
         Ad grabId = DaoFactory.getAdsDao().findUniqueAdId(parseLong(adId));
 
+//        Set grab id object to attribute ad
         request.getSession().setAttribute("ad",grabId);
 
-        System.out.println("grabId.getDescription() = " + grabId.getDescription());
-        System.out.println("grabId.getDescription() = " + grabId.getTitle());
-
-
+//        Use object with get title method to set to existingTitle
         request.setAttribute("existingTitle", grabId.getTitle());
+
+//        Use object with get description method to set to existingDescription
         request.setAttribute("existingDescription", grabId.getDescription());
 
-        request.getRequestDispatcher("/WEB-INF/ads/editads.jsp").forward(request, response);
+//        Forward to editads jsp
+        request.getRequestDispatcher("/WEB-INF/ads/editAd.jsp").forward(request, response);
 
 
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        Ad adObject = (Ad) request.getSession().getAttribute("ad");
+//        instantiate adObject to get attribute ad that was set from grabId above in the doGet
+        Ad updatedAd = (Ad) request.getSession().getAttribute("ad");
 
-        System.out.println("singleAd = " + adObject);
-
-        request.setAttribute("existingTitle", adObject.getTitle());
-        request.setAttribute("existingDescription", adObject.getDescription());
-
-        System.out.println("adObject.getTitle() = " + adObject.getTitle());
-        request.setAttribute("adObject", adObject);
-        request.setAttribute("existingTitle", adObject.getTitle());
-        request.setAttribute("existingDescription", adObject.getDescription());
+//        Reset the values
+        request.setAttribute("adObject", updatedAd);
+        request.setAttribute("existingTitle", updatedAd.getTitle());
+        request.setAttribute("existingDescription", updatedAd.getDescription());
 
 
         //Set values in the form
@@ -53,7 +54,7 @@ public class EditAdServlet extends HttpServlet {
         String description = request.getParameter("description");
 
 
-        DaoFactory.getAdsDao().edit(adObject, title, description);
+        DaoFactory.getAdsDao().edit(updatedAd, title, description);
         response.sendRedirect("/profile");
 
     }

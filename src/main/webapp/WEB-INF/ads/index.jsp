@@ -12,12 +12,26 @@
 <div class="container">
     <h1>Here Are all the ads!</h1>
 
+
+<%--    For each loop that builds each add with forms--%>
     <c:forEach var="ad" items="${ads}">
+
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
         </div>
+
+
+<%--        DELETE FORM--%>
+        <form action="/ads/delete" method="POST">
+            <button>Delete Ad</button>
+<%--                    hidden type of input with value of ad id--%>
+            <input type="hidden" name="singleAd" value="${ad.id}">
+        </form>
+
     </c:forEach>
+
+
 </div>
 
 </body>
