@@ -83,7 +83,7 @@ public class MySQLUsersDao implements Users{
             ResultSet rs = stmt.executeQuery();
             return createUserFromResults(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all ads.", e);
+            throw new RuntimeException("Error retrieving all users.", e);
         }
     }
 
