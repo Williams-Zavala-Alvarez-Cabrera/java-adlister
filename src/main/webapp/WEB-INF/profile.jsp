@@ -6,6 +6,7 @@
     </jsp:include>
 </head>
 <body>
+<%--    changed this to navbar2, orginally just navbar1--%>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
     <div class="container">
