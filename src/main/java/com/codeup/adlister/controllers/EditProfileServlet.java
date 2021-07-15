@@ -25,6 +25,10 @@ public class EditProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //      // HERE IS WHERE ON POST OF THE UPDATE FORM, WE SUBMIT THE CHANGES TO EITHER USERNAME OR EMAIL
         System.out.println("This works");
+        String username = req.getParameter("username");
+        String email = req.getParameter("email");
+
+
     }
 }
 

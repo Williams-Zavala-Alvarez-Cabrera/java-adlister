@@ -87,4 +87,22 @@ public class MySQLUsersDao implements Users{
         }
     }
 
+    // WORK IN PROGRESS
+    @Override
+    public Long updateUserInfo (User currentUser, String username, String email){
+        String currentUsername =  currentUser.getUsername();
+        String updateQuery = "UPDATE users" +
+                "SET username =" + username +
+                "WHERE username = 'Michael Jackson';";
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(updateQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all users.", e);
+        }
+    }
+
 }
