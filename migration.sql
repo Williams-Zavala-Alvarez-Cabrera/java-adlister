@@ -7,8 +7,9 @@ DROP TABLE IF EXISTS adCategories;
 
 CREATE TABLE users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    username VARCHAR(240) NOT NULL,
-    email VARCHAR(240) NOT NULL,
+#   Added unique to username and email so it accepts unique values
+    username VARCHAR(240) NOT NULL UNIQUE ,
+    email VARCHAR(240) NOT NULL UNIQUE ,
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
@@ -32,6 +33,7 @@ CREATE TABLE categories (
 CREATE TABLE adCategories (
   ad_id INT UNSIGNED NOT NULL,
   category_id INT UNSIGNED NOT NULL,
-  FOREIGN KEY (ad_id) REFERENCES ads(id),
+  FOREIGN KEY (ad_id) REFERENCES ads(id) ON DELETE CASCADE ,
+# added on delete cascade so that you dont struggle when deleting foreign keys
   FOREIGN KEY (category_id) REFERENCES categories(id)
 );
