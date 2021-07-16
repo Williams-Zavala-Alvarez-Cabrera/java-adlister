@@ -13,7 +13,7 @@ public interface Users {
     List<User> all();
 
 
-    void checkUsername();
+    List<User> checkUsername();
 
     void updateUserInfo (User currentUser, String username, String email);
 
