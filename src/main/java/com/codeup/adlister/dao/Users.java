@@ -8,5 +8,5 @@ public interface Users {
     User findByUsername(String username);
     Long insert(User user);
     List<User> all();
-    Long updateUserInfo (User currentUser, String username, String email);
+    void updateUserInfo (User currentUser, String username, String email);
 }

@@ -19,6 +19,7 @@ public class EditProfileServlet extends HttpServlet {
             return;
         }
         User currentUser = (User) request.getSession().getAttribute("user");
+
         request.getRequestDispatcher("/WEB-INF/editProf/UpdateProfile.jsp").forward(request, response);
     }
 
@@ -30,6 +31,10 @@ public class EditProfileServlet extends HttpServlet {
         String newEmail = req.getParameter("email");
         User currentUser = (User) req.getSession().getAttribute("user");
         DaoFactory.getUsersDao().updateUserInfo(currentUser, newUsername, newEmail);
+        // This is so the profile doGet is able to update get new info
+        req.getSession().setAttribute("username", newUsername);
+        req.getSession().setAttribute("email", newEmail);
+
         resp.sendRedirect("/profile");
 
     }
