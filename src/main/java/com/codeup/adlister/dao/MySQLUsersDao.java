@@ -94,11 +94,12 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public void checkUsername() {
+    public List<User> checkUsername() {
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement("SELECT username FROM users");
             ResultSet rs = stmt.executeQuery();
+            return createUserFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all users.", e);
 
