@@ -105,8 +105,6 @@ public class MySQLUsersDao implements Users {
         }
     }
 
-
-        // WORK IN PROGRESS
     public void updateUserInfo (User currentUser, String username, String email){
         String currentUsername = currentUser.getUsername();
         String updateQuery1 = "UPDATE users SET username = ?, adlister_db.users.email = ? WHERE adlister_db.users.username = ?;";
@@ -122,6 +120,10 @@ public class MySQLUsersDao implements Users {
             e.printStackTrace();
             throw new RuntimeException("Error updating user.", e);
         }
+    }
+
+    public void updatePassword (User currentUser, String password){
+        Strin
     }
 
 }
