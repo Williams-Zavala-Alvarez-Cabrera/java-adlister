@@ -13,7 +13,7 @@
     <h1>Here Are all the ads!</h1>
 
 
-<%--    For each loop that builds each add with forms--%>
+<%--    For each loop that builds each ad with Buttons--%>
     <c:forEach var="ad" items="${ads}">
 
         <div class="col-md-6">
@@ -26,6 +26,19 @@
         <form action="/ads/delete" method="POST">
             <button>Delete Ad</button>
 <%--                    hidden type of input with value of ad id--%>
+            <input type="hidden" name="singleAd" value="${ad.id}">
+        </form>
+
+<%--        Edit ad form--%>
+        <form action="/ads/edit" method="get">
+            <button>Edit Ad</button>
+            <input type="hidden" name="singleAd" value="${ad.id}">
+        </form>
+
+<%--        Single ad form--%>
+        <form action="/ads/singleAd" method="get">
+
+            <button>Go to ad page</button>
             <input type="hidden" name="singleAd" value="${ad.id}">
         </form>
 
