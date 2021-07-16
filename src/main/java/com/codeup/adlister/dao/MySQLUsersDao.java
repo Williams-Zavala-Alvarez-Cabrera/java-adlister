@@ -101,9 +101,14 @@ public class MySQLUsersDao implements Users {
             ResultSet rs = stmt.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all users.", e);
+
         }
     }
-    // WORK IN PROGRESS
+
+
+
+        // WORK IN PROGRESS
+
     public void updateUserInfo (User currentUser, String username, String email){
         String currentUsername = currentUser.getUsername();
         String updateQuery1 = "UPDATE users SET username = ?, adlister_db.users.email = ? WHERE adlister_db.users.username = ?;";
