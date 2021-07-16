@@ -18,8 +18,6 @@ public class EditProfileServlet extends HttpServlet {
             response.sendRedirect("/login");
             return;
         }
-        User currentUser = (User) request.getSession().getAttribute("user");
-
         request.getRequestDispatcher("/WEB-INF/editProf/UpdateProfile.jsp").forward(request, response);
     }
 
