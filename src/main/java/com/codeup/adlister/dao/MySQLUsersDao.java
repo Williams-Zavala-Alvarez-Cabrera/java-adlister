@@ -123,7 +123,20 @@ public class MySQLUsersDao implements Users {
     }
 
     public void updatePassword (User currentUser, String password){
-        String
+        currentUser.setPassword(password);
+        String newPassword = currentUser.getPassword();
+        String currentUsername = currentUser.getUsername();
+        String updateQuery1 = "UPDATE users SET password = ? WHERE adlister_db.users.username = ?;";
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(updateQuery1, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, newPassword);
+            stmt.setString(2, currentUsername);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating password.", e);
+        }
     }
 
 }

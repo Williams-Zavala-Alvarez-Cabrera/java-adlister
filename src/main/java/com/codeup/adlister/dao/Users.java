@@ -17,4 +17,7 @@ public interface Users {
 
     void updateUserInfo (User currentUser, String username, String email);
 
+    void updatePassword (User currentUser, String password);
+
+
 }

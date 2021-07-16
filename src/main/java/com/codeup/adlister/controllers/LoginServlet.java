@@ -15,8 +15,8 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") != null) {
-            response.sendRedirect("/profile");
-            return;
+                response.sendRedirect("/profile");
+                return;
         }
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
@@ -35,22 +35,24 @@ public class LoginServlet extends HttpServlet {
 
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
-            if (request.getSession().getAttribute("visitAttempt").equals("adsCreate")) {
-                response.sendRedirect("/ads/create");
-            } else {
-                response.sendRedirect("/profile");
-
-            } else {
-                response.sendRedirect("/login");
-            }
             User currentUser = (User) request.getSession().getAttribute("user");
             String currentUsername = currentUser.getUsername();
             String email = currentUser.getEmail();
             request.getSession().setAttribute("username", currentUsername);
             request.getSession().setAttribute("email", email);
+            if (request.getSession().getAttribute("visitAttempt") =="adsCreate") {
+                response.sendRedirect("/ads/create");
+            } else {
+                response.sendRedirect("/profile");
+
+            }
+        } else {
+                response.sendRedirect("/login");
+            }
         }
     }
-}
+
+
 
 
 
