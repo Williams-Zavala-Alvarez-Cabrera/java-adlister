@@ -87,4 +87,22 @@ public class MySQLUsersDao implements Users{
         }
     }
 
+    // WORK IN PROGRESS
+    public void updateUserInfo (User currentUser, String username, String email){
+        String currentUsername =  currentUser.getUsername();
+        String updateQuery1 = "UPDATE users SET username = ?, adlister_db.users.email = ? WHERE adlister_db.users.username = ?;";
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(updateQuery1, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1,username);
+            stmt.setString(2, email);
+            stmt.setString(3, currentUsername);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating user.", e);
+        }
+    }
+
 }
