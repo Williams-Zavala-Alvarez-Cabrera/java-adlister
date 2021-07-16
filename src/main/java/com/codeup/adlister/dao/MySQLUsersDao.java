@@ -1,6 +1,5 @@
 package com.codeup.adlister.dao;
 
-import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
@@ -9,16 +8,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLUsersDao implements Users{
+public class MySQLUsersDao implements Users {
     private Connection connection;
 
     public MySQLUsersDao(Config config) {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUser(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -37,6 +36,7 @@ public class MySQLUsersDao implements Users{
         }
     }
 
+
     @Override
     public Long insert(User user) {
         String query = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
@@ -54,15 +54,21 @@ public class MySQLUsersDao implements Users{
         }
     }
 
+    @Override
+    public Boolean usernameExists(String username) {
+        return null;
+    }
+
+
     private User extractUser(ResultSet rs) throws SQLException {
-        if (! rs.next()) {
+        if (!rs.next()) {
             return null;
         }
         return new User(
-            rs.getLong("id"),
-            rs.getString("username"),
-            rs.getString("email"),
-            rs.getString("password")
+                rs.getLong("id"),
+                rs.getString("username"),
+                rs.getString("email"),
+                rs.getString("password")
         );
     }
 
@@ -84,6 +90,39 @@ public class MySQLUsersDao implements Users{
             return createUserFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all users.", e);
+        }
+    }
+
+    @Override
+    public List<User> checkUsername() {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT username FROM users");
+            ResultSet rs = stmt.executeQuery();
+            return createUserFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all users.", e);
+
+        }
+    }
+
+
+
+        // WORK IN PROGRESS
+
+    public void updateUserInfo (User currentUser, String username, String email){
+        String currentUsername = currentUser.getUsername();
+        String updateQuery1 = "UPDATE users SET username = ?, adlister_db.users.email = ? WHERE adlister_db.users.username = ?;";
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(updateQuery1, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, username);
+            stmt.setString(2, email);
+            stmt.setString(3, currentUsername);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating user.", e);
         }
     }
 

@@ -13,6 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "DeleteAdServlet", urlPatterns = "/ads/delete")
 public class DeleteAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
 
     }
@@ -23,7 +24,5 @@ public class DeleteAdServlet extends HttpServlet {
         DaoFactory.getAdsDao().delete(singleAd);
         response.sendRedirect("/profile");
         //delete ad
-
-
     }
 }
