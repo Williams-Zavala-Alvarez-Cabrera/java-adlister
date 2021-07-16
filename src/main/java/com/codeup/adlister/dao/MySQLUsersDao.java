@@ -5,25 +5,24 @@ import com.mysql.cj.jdbc.Driver;
 
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MySQLUsersDao implements Users{
+public class MySQLUsersDao implements Users {
     private Connection connection;
 
     public MySQLUsersDao(Config config) {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUser(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
         }
     }
-
-
-
 
     @Override
     public User findByUsername(String username) {
@@ -62,15 +61,47 @@ public class MySQLUsersDao implements Users{
 
 
     private User extractUser(ResultSet rs) throws SQLException {
-        if (! rs.next()) {
+        if (!rs.next()) {
             return null;
         }
         return new User(
-            rs.getLong("id"),
-            rs.getString("username"),
-            rs.getString("email"),
-            rs.getString("password")
+                rs.getLong("id"),
+                rs.getString("username"),
+                rs.getString("email"),
+                rs.getString("password")
         );
+    }
+
+    private List<User> createUserFromResults(ResultSet rs) throws SQLException {
+        List<User> ads = new ArrayList<>();
+        while (rs.next()) {
+            ads.add(extractUser(rs));
+        }
+        return ads;
+    }
+
+
+    @Override
+    public List<User> all() {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM users");
+            ResultSet rs = stmt.executeQuery();
+            return createUserFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all users.", e);
+        }
+    }
+
+    @Override
+    public void checkUsername() {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT username FROM users");
+            ResultSet rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all users.", e);
+        }
     }
 
 }
