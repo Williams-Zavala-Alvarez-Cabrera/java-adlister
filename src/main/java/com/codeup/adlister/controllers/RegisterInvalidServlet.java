@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
-public class RegisterServlet extends HttpServlet {
+@WebServlet (name="controllers.RegisterInvalidServlet", urlPatterns = "/invalid_registration")
+public class RegisterInvalidServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/invalid_registration.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,22 +23,18 @@ public class RegisterServlet extends HttpServlet {
         String passwordConfirmation = request.getParameter("confirm_password");
 
         // validate input
-        boolean inputHasError = username.isEmpty()
-            || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+        boolean inputHasErrors = username.isEmpty()
+                || email.isEmpty()
+                || password.isEmpty()
+                || (! password.equals(passwordConfirmation));
 
-        if (inputHasError) {
+        if (inputHasErrors) {
             response.sendRedirect("/invalid_registration");
             return;
         }
 
-        User user = new User(username, email, password);
-        //Check to see if parameter value has already been created in the database - Alejandro
-
-
         // create and save a new user
-
+        User user = new User(username, email, password);
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
     }
