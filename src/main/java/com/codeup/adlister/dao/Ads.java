@@ -13,7 +13,7 @@ public interface Ads {
 
     Ad findUniqueAdId(Long ad);
 
-    void delete(Ad ad);
+    void delete(Ad id);
 
     void edit(Ad ad, String title, String description);
 

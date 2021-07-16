@@ -14,12 +14,13 @@
 <%--            <li><a href="/logout">Logout</a></li>--%>
             <c:choose>
                 <c:when test= "${sessionScope.user == null}">
+                    <li><a href="/ads/create">Create Ad</a></li>
                     <li><a href="/login">Login</a></li>
                     <li><a href="/register">Register</a></li>
-
                 </c:when>
                 <c:otherwise>
                     <li><a href="/ads/create">Create Ad</a></li>
+                    <li><a href="/profile">Profile</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </c:otherwise>
             </c:choose>
@@ -27,3 +28,4 @@
     </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+ti
