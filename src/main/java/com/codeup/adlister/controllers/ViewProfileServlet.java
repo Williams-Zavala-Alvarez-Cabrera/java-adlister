@@ -19,10 +19,10 @@ public class ViewProfileServlet extends HttpServlet {
             return;
         }
         User currentUser = (User) request.getSession().getAttribute("user");
-        String usernam = (String) request.getSession().getAttribute("username");
-        String email = (String) request.getSession().getAttribute("email");
-        System.out.println(usernam);
-        System.out.println(email);
+        String currUsername = (String) request.getSession().getAttribute("username");
+        String currEmail = (String) request.getSession().getAttribute("email");
+        request.getSession().setAttribute("username", currUsername);
+        request.getSession().setAttribute("email", currEmail);
 
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }
