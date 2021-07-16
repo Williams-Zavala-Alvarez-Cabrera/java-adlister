@@ -123,7 +123,7 @@ public class MySQLUsersDao implements Users {
     }
 
     public void updatePassword (User currentUser, String password){
-        Strin
+        String
     }
 
 }
