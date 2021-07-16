@@ -1,5 +1,6 @@
 package com.codeup.adlister.controllers;
 
+import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -25,9 +26,11 @@ public class EditProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //      // HERE IS WHERE ON POST OF THE UPDATE FORM, WE SUBMIT THE CHANGES TO EITHER USERNAME OR EMAIL
         System.out.println("This works");
-        String username = req.getParameter("username");
-        String email = req.getParameter("email");
-
+        String newUsername = req.getParameter("username");
+        String newEmail = req.getParameter("email");
+        User currentUser = (User) req.getSession().getAttribute("user");
+        DaoFactory.getUsersDao().updateUserInfo(currentUser, newUsername, newEmail);
+        resp.sendRedirect("/profile");
 
     }
 }
