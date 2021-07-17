@@ -8,6 +8,8 @@ import java.util.List;
 public interface Ads {
     // get a list of all the ads
     List<Ad> all();
+    // get a list of user's ads
+    List<Ad> allUserAds(User user);
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
 
