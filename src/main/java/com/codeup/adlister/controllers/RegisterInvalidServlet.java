@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet (name="controllers.RegisterInvalidServlet", urlPatterns = "/invalid_registration")
-public class RegisterInvalidServlet extends HttpServlet {
+public class     RegisterInvalidServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/invalid_registration.jsp").forward(request, response);
     }

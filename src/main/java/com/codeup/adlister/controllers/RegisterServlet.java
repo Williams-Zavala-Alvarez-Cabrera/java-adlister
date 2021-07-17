@@ -29,29 +29,28 @@ public class RegisterServlet extends HttpServlet {
             || password.isEmpty()
             || (! password.equals(passwordConfirmation));
 
+        boolean alreadyExists = false;
+
+//        for(User singleUser : DaoFactory.getUsersDao().checkUsername()){
+//            if (singleUser.getUsername().equals(username)) {
+//                alreadyExists = true;
+//                break;
+//            }
+//        }
+
         if (inputHasError) {
+            response.sendRedirect("/invalid_registration");
+            return;
+        } else if (alreadyExists) {
             response.sendRedirect("/invalid_registration");
             return;
         }
 
-        User user = new User(username, email, password);
         //Check to see if parameter value has already been created in the database - Alejandro
 
-        boolean alreadyExists = false;
-
-        for(User singleUser : DaoFactory.getUsersDao().checkUsername()){
-            if (singleUser.getUsername().equals(username)) {
-                alreadyExists = true;
-                break;
-            }
-        }
-
-        if (alreadyExists) {
-            response.sendRedirect("/invalid_registration");
-        }
 
         // create and save a new user
-
+        User user = new User(username, email, password);
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
     }
