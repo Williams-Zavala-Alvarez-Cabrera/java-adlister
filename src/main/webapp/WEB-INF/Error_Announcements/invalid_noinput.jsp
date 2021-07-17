@@ -8,7 +8,7 @@
 <body>
 <jsp:include page="../partials/navbar.jsp" />
 <div class="container">
-    <h1>Your fomr is empty. <br> Please fill in your information...</h1>
+    <h1>Your form is empty... <br> Please fill in your information:</h1>
     <form action="/invalid_noinput" method="post">
         <div class="form-group">
             <label for="username">Username</label>

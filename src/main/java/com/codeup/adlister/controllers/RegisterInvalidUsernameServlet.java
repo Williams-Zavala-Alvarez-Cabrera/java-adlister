@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet (name="controllers.RegisterInvalidUsernameServlet", urlPatterns = "/invalid_username")
 public class RegisterInvalidUsernameServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/invalid_username.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/Error_Announcements/invalid_username.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -29,7 +29,7 @@ public class RegisterInvalidUsernameServlet extends HttpServlet {
                 || (! password.equals(passwordConfirmation));
 
         if (inputHasErrors) {
-            response.sendRedirect("/invalid_username");
+            response.sendRedirect("/invalid_noinput");
             return;
         }
 

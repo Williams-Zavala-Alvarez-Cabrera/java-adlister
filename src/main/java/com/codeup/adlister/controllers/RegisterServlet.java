@@ -23,18 +23,9 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
 
-        // validate input
-        boolean inputHasError = username.isEmpty()
-            || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
 
-        if (inputHasError) {
-            response.sendRedirect("/invalid_noinput");
-            return;
-        }
 
-        User user = new User(username, email, password);
+
         //Check to see if parameter value has already been created in the database - Alejandro
 
         boolean alreadyExists = false;
@@ -48,11 +39,23 @@ public class RegisterServlet extends HttpServlet {
 
         if (alreadyExists) {
             response.sendRedirect("/invalid_username");
+            return;
         }
 
         // create and save a new user
-
+        User user = new User(username, email, password);
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
+
+//         validate input
+        boolean inputHasError = username.isEmpty()
+            || email.isEmpty()
+            || password.isEmpty()
+            || (! password.equals(passwordConfirmation));
+
+        if (inputHasError) {
+            response.sendRedirect("/invalid_noinput");
+            return;
+        }
     }
 }
