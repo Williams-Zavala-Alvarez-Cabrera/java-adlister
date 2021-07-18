@@ -22,6 +22,18 @@ public class noInputServlet extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
 
+//        boolean alredyExists = false;
+//
+//        for(User singleUser : DaoFactory.getUsersDao().checkUsername()){
+//            if(singleUser.getUsername().equals(username)){
+//                alredyExists = true;
+//                response.sendRedirect("/invalid_username");
+//                break;
+//
+//            }
+//
+//        }
+//
         // validate input
         boolean inputHasErrors = username.isEmpty()
                 || email.isEmpty()

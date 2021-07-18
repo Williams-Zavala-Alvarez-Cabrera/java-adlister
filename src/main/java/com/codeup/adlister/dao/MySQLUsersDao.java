@@ -54,6 +54,8 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+
+
     @Override
     public Boolean usernameExists(String username) {
         return null;
@@ -94,19 +96,12 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public List<User> checkUsername() {
-        PreparedStatement stmt = null;
-        try {
-            stmt = connection.prepareStatement("SELECT username FROM users");
-            ResultSet rs = stmt.executeQuery();
-            return createUserFromResults(rs);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all users.", e);
-
-        }
+    public List<User> checkUsername() throws SQLException {
+        return null;
     }
 
-        // WORK IN PROGRESS
+
+    // WORK IN PROGRESS
     public void updateUserInfo (User currentUser, String username, String email){
         String currentUsername = currentUser.getUsername();
         String updateQuery1 = "UPDATE users SET username = ?, adlister_db.users.email = ? WHERE adlister_db.users.username = ?;";

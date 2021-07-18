@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.*;
+
+import static com.codeup.adlister.dao.DaoFactory.getUsersDao;
 
 @WebServlet (name="controllers.RegisterInvalidUsernameServlet", urlPatterns = "/invalid_username")
 public class RegisterInvalidUsernameServlet extends HttpServlet {
@@ -22,20 +25,33 @@ public class RegisterInvalidUsernameServlet extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
 
-        // validate input
-        boolean inputHasErrors = username.isEmpty()
-                || email.isEmpty()
-                || password.isEmpty()
-                || (! password.equals(passwordConfirmation));
+        //Database Connection:
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost : 3306/adlister_db?useSSL=false", "root", "codeup");
 
-        if (inputHasErrors) {
-            response.sendRedirect("/invalid_noinput");
-            return;
+            //get data from username and password table using query:
+            Statement stm = con.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM users WHERE username='" + username + "'AND email= '" + email + "'");
+            boolean noInput = username.isEmpty()
+                    || email.isEmpty()
+                    || password.isEmpty()
+                    || (!password.equals(passwordConfirmation));
+            if (noInput) {
+                response.sendRedirect("/invalid_noinput");
+            } else if (rs.next()) {
+                //if username and password true than go to Log in page and then profile:
+                response.sendRedirect("/invalid_username");
+            } else {
+                // create and save a new user
+                User user = new User(username, email, password);
+                getUsersDao().insert(user);
+                response.sendRedirect("/login");
+            }
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
         }
 
-        // create and save a new user
-        User user = new User(username, email, password);
-        DaoFactory.getUsersDao().insert(user);
-        response.sendRedirect("/login");
+
     }
 }
