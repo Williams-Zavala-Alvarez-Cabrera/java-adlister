@@ -28,21 +28,23 @@ public class RegisterInvalidUsernameServlet extends HttpServlet {
         //Database Connection:
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost : 3306/adlister_db?useSSL=false", "root", "codeup");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost : 3306/adlister_db?useSSL=false","root","codeup");
 
             //get data from username and password table using query:
             Statement stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM users WHERE username='" + username + "'AND email= '" + email + "'");
+            ResultSet rs =  stm.executeQuery("SELECT * FROM users WHERE username='"+username+"'OR email= '"+email+"'");
             boolean noInput = username.isEmpty()
                     || email.isEmpty()
                     || password.isEmpty()
-                    || (!password.equals(passwordConfirmation));
-            if (noInput) {
+                    || (! password.equals(passwordConfirmation));
+            if (noInput){
                 response.sendRedirect("/invalid_noinput");
-            } else if (rs.next()) {
-                //if username and password true than go to Log in page and then profile:
+            }
+            else if(rs.next()){
+                //
                 response.sendRedirect("/invalid_username");
-            } else {
+            }
+            else{
                 // create and save a new user
                 User user = new User(username, email, password);
                 getUsersDao().insert(user);
@@ -51,6 +53,7 @@ public class RegisterInvalidUsernameServlet extends HttpServlet {
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
+
 
 
     }

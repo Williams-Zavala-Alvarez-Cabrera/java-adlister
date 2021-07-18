@@ -8,7 +8,7 @@
 <body>
 <jsp:include page="../partials/navbar.jsp" />
 <div class="container">
-    <h1>Username and email already in use... <br>Please enter a valid username or email:</h1>
+    <h1>Username or email already in use... <br>Please enter a valid username or email:</h1>
     <form action="/invalid_username" method="post">
         <div class="form-group">
             <label for="username">Username</label>

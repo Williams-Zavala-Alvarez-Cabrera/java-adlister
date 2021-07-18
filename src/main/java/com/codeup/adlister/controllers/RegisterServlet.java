@@ -32,7 +32,7 @@ public class RegisterServlet extends HttpServlet {
 
             //get data from username and password table using query:
             Statement stm = con.createStatement();
-            ResultSet rs =  stm.executeQuery("SELECT * FROM users WHERE username='"+username+"'AND email= '"+email+"'");
+            ResultSet rs =  stm.executeQuery("SELECT * FROM users WHERE username='"+username+"'OR email= '"+email+"'");
             boolean noInput = username.isEmpty()
                     || email.isEmpty()
                     || password.isEmpty()
@@ -41,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
                 response.sendRedirect("/invalid_noinput");
             }
             else if(rs.next()){
-                //if username and password true than go to Log in page and then profile:
+                //
                 response.sendRedirect("/invalid_username");
             }
             else{
