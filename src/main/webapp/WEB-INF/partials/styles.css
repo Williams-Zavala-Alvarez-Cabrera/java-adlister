@@ -1,11 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-weight: bold;
+}
 
 .truck {
     border-radius: 50%;
     border: 3px solid black;
-    height: 200px;
-    width: 200px;
+    /*height: 200px;*/
+    /*width: 200px;*/
+    height: 6em;
+    width: 6em;
 }
 
 /*optional quirky feature if time permits*/
@@ -16,7 +29,6 @@
     padding-top: -10px;
 
 }
-
 
 input {
     color: black;
@@ -85,6 +97,7 @@ a.button:hover {
     text-align: left;
 }
 
+
 .big-logo1 {
     height: 30%;
     width: 40%;
@@ -94,17 +107,85 @@ a.button:hover {
     list-style: none;
 }
 
-.content2 {
-   animation: ;
+/*.content2 {*/
+/*   animation: ;*/
+/*}*/
+
+/*@keyframes move {*/
+/*    0% {*/
+/*        transform: translate(0);*/
+
+/*    }*/
+
+/*    50% {*/
+/*        transform: translate(110);*/
+/*    }*/
+
+/* CSS for Profile page and ads*/
+.masterContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-@keyframes move {
-    0% {
-        transform: translate(0);
+#adContainer {
+    flex-direction: column;
+    /*width: 75%;*/
+    flex-basis: 60%;
+}
 
-    }
+.profileContainer {
+    flex-direction: column;
+    flex-basis: 30%;
+}
 
-    50% {
-        transform: translate(110);
-    }
+.singleAdContainer {
+    width: 75%;
+}
+
+#welcomeUser {
+    font-size: 4em;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.profileTitle {
+    font-weight: bold;
+}
+
+#profileList {
+    list-style: none;
+}
+
+.card-body {
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    padding: 2em;
+    margin: 2.5em 0;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 20px;
+}
+
+.adButtonsContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonForm {
+
+}
+
+.editButton {
+    margin-top: 2em;
+    margin-right: 1.5em;
+    padding: 10px;
+
 }

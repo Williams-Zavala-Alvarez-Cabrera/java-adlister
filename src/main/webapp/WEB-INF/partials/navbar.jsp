@@ -9,17 +9,19 @@
         <div class="navbar-header">
 <%--            optional feature if time permits. way to link button to an amazon page. --%>
 <%--    <iframe class="horn" width="115" height="110" src="https://www.myinstants.com/instant/la-cucaracha-car-horn-51677/embed/" frameborder="0" scrolling="no"></iframe>--%>
-            <a class="navbar-brand" href="/ads"><img class="truck" src="https://raw.githubusercontent.com/bennyalvarez/codeup-web-exercises/main/img/FoodTruckAdLister/Logo/redLogo.jpeg" alt="logo"/></a>
+        <img class="truck" src="https://raw.githubusercontent.com/bennyalvarez/codeup-web-exercises/main/img/FoodTruckAdLister/Logo/redLogo.jpeg" alt="logo"/>
         </div>
         <ul class="nav navbar-nav navbar-right">
 
             <c:choose>
                 <c:when test= "${sessionScope.user == null}">
+                    <li class="nav_links"><a href="/ads ">View Ads</a></li>
                     <li class="nav_links"><a href="/ads/create">Create Ad</a></li>
                     <li class="nav_links"><a href="/login">Login</a></li>
                     <li class="nav_links"><a href="/register">Register</a></li>
                 </c:when>
                 <c:otherwise>
+                    <li class="nav_links"><a href="/ads ">View Ads</a></li>
                     <li class="nav_links"><a href="/ads/create">Create Ad</a></li>
                     <li class="nav_links"><a href="/profile">Profile</a></li>
                     <li class="nav_links"><a href="/logout">Logout</a></li>

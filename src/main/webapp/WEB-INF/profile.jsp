@@ -10,45 +10,43 @@
 <%--    changed this to navbar2, orginally just navbar1--%>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<main class="container d-flex">
+<main class="container-fluid d-flex">
     <div class="row">
-        <h1>Welcome, ${sessionScope.username}!</h1>
+        <h1 id="welcomeUser">Welcome, ${sessionScope.username}!</h1>
     </div>
-    <div class="d-flex row flex-row">
-        <div id="adContainer" class="col-5">
-            <h2>Your ads</h2>
-            <c:forEach var="ad" items="${ads}">
-
-                <div class="container d-flex col-md-6">
-                    <h2>${ad.title}</h2>
-                    <p>${ad.description}</p>
-                    <div class="adButtonsContainer row">
-                            <%--        DELETE FORM--%>
-                        <form class="col-4" action="/ads/delete" method="POST">
-                            <button class="col">Delete Ad</button>
-                                <%--                    hidden type of input with value of ad id--%>
-                            <input type="hidden" name="singleAd" value="${ad.id}">
-                        </form>
-
-                            <%--        Edit ad form--%>
-                        <form  class="col-4" action="/ads/edit" method="get">
-                            <button class="col">Edit Ad</button>
-                            <input type="hidden" name="singleAd" value="${ad.id}">
-                        </form>
-
-                            <%--        Single ad form--%>
-                        <form class="col-4" action="/ads/singleAd" method="get">
-
-                            <button class="col">Go to ad page</button>
-                            <input type="hidden" name="singleAd" value="${ad.id}">
-                        </form>
+    <div class="masterContainer">
+        <div id="adContainer" class="col-4">
+                <div class="singleAdContainer card col-md-6">
+                    <h1>Your Ads</h1>
+                    <c:forEach var="ad" items="${ads}">
+                    <div class="card-body">
+                        <h2 class="card-title">${ad.title}</h2>
+                        <p class="card-text">${ad.description}</p>
+                        <div class="adButtonsContainer">
+                                <%--Edit ad form--%>
+                            <form  class="buttonForm" action="/ads/edit" method="get">
+                                <button class="editButton">Edit Ad</button>
+                                <input type="hidden" name="singleAd" value="${ad.id}">
+                            </form>
+                                <%--DELETE FORM--%>
+                            <form class="buttonForm" action="/ads/delete" method="POST">
+                                <button class="editButton">Delete Ad</button>
+                                <%--hidden type of input with value of ad id--%>
+                                <input type="hidden" name="singleAd" value="${ad.id}">
+                            </form>
+                                <%--Single ad form--%>
+                            <form class="buttonForm" action="/ads/singleAd" method="get">
+                                <button class="editButton">More Info</button>
+                                <input type="hidden" name="singleAd" value="${ad.id}">
+                            </form>
+                        </div>
                     </div>
+                    </c:forEach>
                 </div>
-            </c:forEach>
         </div>
-        <div class="col-3 justify-content-end">
-            <h2>Profile info</h2>
-            <ul id="profile-container" >
+        <div class="profileContainer col-6">
+            <h2 class="profileTitle">Profile Info</h2>
+            <ul id="profileList" >
                 <li><h3>Username: ${sessionScope.username}<a class="editProfileButton badge bg-info" href="/profile/edit" style="margin-left: 1em">Edit</a></h3></li>
                 <li><h3>Email:  ${sessionScope.email}<a class="editProfileButton badge bg-info" href="/profile/edit" style="margin-left: 1em">Edit</a></h3></li>
                 <li><h3>Password: *********<a class="editProfileButton badge bg-info" href="/profile/update/password" style="margin-left: 1em">Edit</a></h3></li>
