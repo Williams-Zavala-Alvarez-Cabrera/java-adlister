@@ -11,7 +11,7 @@
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <main class="container-fluid d-flex">
-    <div class="row">
+    <div class="banner">
         <h1 id="welcomeUser">Welcome, ${sessionScope.username}!</h1>
     </div>
     <div class="masterContainer">

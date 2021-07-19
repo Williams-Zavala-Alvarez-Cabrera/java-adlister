@@ -133,6 +133,7 @@ a.button:hover {
 .profileContainer {
     flex-direction: column;
     flex-basis: 30%;
+    text-align: left;
 }
 
 .singleAdContainer {
@@ -141,8 +142,18 @@ a.button:hover {
 
 #welcomeUser {
     font-size: 4em;
-    text-align: center;
-    margin-bottom: 2em;
+    justify-self: center;
+    align-self: center;
+    margin: 1em auto;
+    color: whitesmoke;
+}
+
+.banner {
+    background: linear-gradient(133.38439352311298deg, rgba(10, 83, 122,1) 5.980209111277072%,rgba(129, 209, 201,1) 95.82337565347274%);
+    border-radius: 6px;
+    height: 90px;
+    display: flex;
+    margin-bottom: 1em;
 }
 
 .profileTitle {
@@ -182,7 +193,28 @@ a.button:hover {
     margin-top: 2em;
     margin-right: 1.5em;
     padding: 10px;
+}
 
+/*Ads Page CSS*/
+
+#adsPageContainer{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cardBodyAdsPage {
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 30%;
+    justify-self: center;
+    /*width: 10em;*/
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    padding: 2em;
+    margin: 2.5em 2.5em;
 }
 
 .main-pic {
