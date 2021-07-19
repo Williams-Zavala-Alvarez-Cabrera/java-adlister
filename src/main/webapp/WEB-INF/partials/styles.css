@@ -23,10 +23,9 @@ h1 {
 
 /*optional quirky feature if time permits*/
 .horn {
-    border: 8px solid black;
     border-radius: 50%;
     padding-left: -10px;
-    padding-top: -10px;
+    padding-top: -5px;
 
 }
 
@@ -41,6 +40,19 @@ a {
     color: #FFFFFF;
     background-color: #0E0A04;
     text-decoration: none;
+}
+
+.here {
+    /*font-family: 'Poppins', sans-serif;*/
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    color: blue;
+
+}
+
+.here:hover {
+    color: red;
 }
 
 
@@ -97,29 +109,12 @@ a.button:hover {
     text-align: left;
 }
 
-
+/*this is the big logo on index.jsp*/
 .big-logo1 {
-    height: 30%;
-    width: 40%;
+    height: 20%;
+    width: 25%;
 }
 
-.welcome-list {
-    list-style: none;
-}
-
-/*.content2 {*/
-/*   animation: ;*/
-/*}*/
-
-/*@keyframes move {*/
-/*    0% {*/
-/*        transform: translate(0);*/
-
-/*    }*/
-
-/*    50% {*/
-/*        transform: translate(110);*/
-/*    }*/
 
 /* CSS for Profile page and ads*/
 .masterContainer {
@@ -188,4 +183,42 @@ a.button:hover {
     margin-right: 1.5em;
     padding: 10px;
 
+}
+
+.main-pic {
+    width: 1150px;
+    height: auto;
+    padding: 0 0 0 15px;
+    margin: -1px auto 0px auto;
+    text-align: center;
+    box-shadow: 10px 10px 5px #ccc;
+    -moz-box-shadow: 10px 10px 5px #ccc;
+    -webkit-box-shadow: 10px 10px 5px #ccc;
+    -khtml-box-shadow: 10px 10px 5px #ccc;
+
+
+}
+
+.home-intro {
+    font-size: 20px;
+}
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media screen and (max-width: 500px) {
+    .column {
+        width: 100%;
+    }
 }
