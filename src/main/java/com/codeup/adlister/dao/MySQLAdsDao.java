@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 
@@ -12,7 +13,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLAdsDao implements Ads {
+public class MySQLAdsDao extends User implements Ads {
     private Connection connection = null;
 
     public MySQLAdsDao(Config config) {
@@ -37,7 +38,22 @@ public class MySQLAdsDao implements Ads {
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
+    @Override
+    public List<Ad> allUserAds(User user){
+        PreparedStatement stmt = null;
+        long userID = user.getId();
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE user_id = " + userID);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error retrieving user's ads.", e);
         }
     }
 

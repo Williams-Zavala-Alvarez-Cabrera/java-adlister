@@ -21,8 +21,12 @@ public class ViewProfileServlet extends HttpServlet {
         User currentUser = (User) request.getSession().getAttribute("user");
         String currUsername = (String) request.getSession().getAttribute("username");
         String currEmail = (String) request.getSession().getAttribute("email");
-        System.out.println(currUsername);
-        System.out.println(currEmail);
+
+        request.setAttribute("ads", DaoFactory.getAdsDao().allUserAds(currentUser));
+
+
+
+        // This sets attributes to be displayed by jsp
         request.getSession().setAttribute("username", currUsername);
         request.getSession().setAttribute("email", currEmail);
 

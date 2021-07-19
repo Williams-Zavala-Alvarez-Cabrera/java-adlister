@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+.truck {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
+
+/*optional quirky feature if time permits*/
+.horn {
+    border: 3px solid black;
+    border-radius: 50%;
+    padding-left: -10px;
+    padding-top: -10px;
+
+}
+
+
+input {
+    color: black;
+}
+
+a {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFFFFF;
+    background-color: #0E0A04;
+    text-decoration: none;
+}
+
+
+.logo {
+    cursor: pointer;
+    margin-right: auto;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.nav_links {
+    list-style: none;
+}
+
+.nav_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav_links li a{
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links :hover {
+    color: #0088a9;
+
+}
+
+
+.btn-primary {
+    margin-right: 20px;
+
+}
+
+button:hover {
+    background-color: rgba(0,136,169,0.8);
+}
