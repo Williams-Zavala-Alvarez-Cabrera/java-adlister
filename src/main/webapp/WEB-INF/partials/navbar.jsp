@@ -9,7 +9,7 @@
         <div class="navbar-header">
 <%--            optional feature if time permits. way to link button to an amazon page. --%>
 <%--    <iframe class="horn" width="115" height="110" src="https://www.myinstants.com/instant/la-cucaracha-car-horn-51677/embed/" frameborder="0" scrolling="no"></iframe>--%>
-            <a class="navbar-brand" href="/ads"><img class="truck" src="https://raw.githubusercontent.com/bennyalvarez/codeup-web-exercises/main/img/redLogo.jpeg" alt="logo"/></a>
+            <a class="navbar-brand" href="/ads"><img class="truck" src="https://raw.githubusercontent.com/bennyalvarez/codeup-web-exercises/main/img/FoodTruckAdLister/Logo/redLogo.jpeg" alt="logo"/></a>
         </div>
         <ul class="nav navbar-nav navbar-right">
 

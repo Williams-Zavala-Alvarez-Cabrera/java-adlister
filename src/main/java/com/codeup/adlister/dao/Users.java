@@ -2,6 +2,7 @@ package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface Users {
@@ -13,7 +14,7 @@ public interface Users {
     List<User> all();
 
 
-    List<User> checkUsername();
+    List<User> checkUsername() throws SQLException;
 
     void updateUserInfo (User currentUser, String username, String email);
 
