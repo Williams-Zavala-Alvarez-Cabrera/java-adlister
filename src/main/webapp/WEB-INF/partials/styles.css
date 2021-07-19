@@ -3,13 +3,14 @@
 
 .truck {
     border-radius: 50%;
+    border: 3px solid black;
     height: 200px;
     width: 200px;
 }
 
 /*optional quirky feature if time permits*/
 .horn {
-    border: 3px solid black;
+    border: 8px solid black;
     border-radius: 50%;
     padding-left: -10px;
     padding-top: -10px;
@@ -34,8 +35,8 @@ a {
 .logo {
     cursor: pointer;
     margin-right: auto;
-    height: 100px;
-    width: 100px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
 }
 
@@ -53,16 +54,29 @@ a {
 }
 
 .nav_links :hover {
-    color: #0088a9;
+    color: black;
 
 }
 
 
 .btn-primary {
     margin-right: 20px;
+    font-weight: bolder;
+    background-color: red;
+    border: 3.5px solid black;
 
 }
 
-button:hover {
-    background-color: rgba(0,136,169,0.8);
+a.button:hover {
+    background-color: black;
+}
+
+.form-container {
+    margin: 1em auto;
+    width: 70%;
+}
+
+.title {
+    margin-bottom: 2em;
+    text-align: left;
 }
