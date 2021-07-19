@@ -196,7 +196,6 @@ a.button:hover {
 }
 
 /*Ads Page CSS*/
-
 #adsPageContainer{
     display: flex;
     flex-wrap: wrap;
@@ -253,4 +252,9 @@ a.button:hover {
     .column {
         width: 100%;
     }
+}
+
+#description {
+    height: 10em;
+    width: 15em;
 }

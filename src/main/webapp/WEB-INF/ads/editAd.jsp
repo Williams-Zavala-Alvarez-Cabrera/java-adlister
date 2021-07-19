@@ -19,21 +19,19 @@
 <%--        Hidden input using updated ad object as input value--%>
         <input type="hidden" name="adToUpdate" value="${updatedAd}">
         <div class="col-md-6 justify-content-center form-group">
-            <h1>Edit Ads.</h1>
-
-            <label for="title"> Title:</label>
-<%--            Input to update title using existingTitle value--%>
+            <h1>Edit Ad</h1>
+            <label for="title"> Title: </label>
+            <br>
             <input id="title" type="text" name="title" value="${existingTitle}">
+            <div class="form-group">
+                <label for="description"> Description: </label>
+                <br>
+                <input id="description" type="text" name="description" value="${existingDescription}">
+                <br>
+                <button>Save</button>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="description"> Description: </label>
-<%--            Update description--%>
-            <input id="description" type="text" name="description" value="${existingDescription}">
-            <button>Save Changes</button>
-        </div>
-
     </form>
-
 </div>
 
 </body>
