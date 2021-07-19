@@ -88,10 +88,38 @@ a.button:hover {
     width: 70%;
 }
 
+.welcome-container {
+    text-align: center;
+}
+
 .title {
     margin-bottom: 2em;
     text-align: left;
 }
+
+
+.big-logo1 {
+    height: 30%;
+    width: 40%;
+}
+
+.welcome-list {
+    list-style: none;
+}
+
+/*.content2 {*/
+/*   animation: ;*/
+/*}*/
+
+/*@keyframes move {*/
+/*    0% {*/
+/*        transform: translate(0);*/
+
+/*    }*/
+
+/*    50% {*/
+/*        transform: translate(110);*/
+/*    }*/
 
 /* CSS for Profile page and ads*/
 .masterContainer {
@@ -159,4 +187,5 @@ a.button:hover {
     margin-top: 2em;
     margin-right: 1.5em;
     padding: 10px;
+
 }
